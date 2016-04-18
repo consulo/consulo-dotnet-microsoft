@@ -20,12 +20,7 @@ package consulo.dotnet.microsoft.debugger.protocol.serverMessage;
  * @author VISTALL
  * @since 18.04.2016
  */
-public class GetThreadsRequestResult
+public class GetMethodInfoRequestResult
 {
-	public static class ThreadInfo
-	{
-		public int Id;
-	}
-
-	public ThreadInfo[] Threads = new ThreadInfo[0];
+	public String Name;
 }

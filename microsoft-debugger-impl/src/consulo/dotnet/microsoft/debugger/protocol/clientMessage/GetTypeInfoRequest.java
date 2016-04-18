@@ -14,18 +14,21 @@
  * limitations under the License.
  */
 
-package consulo.dotnet.microsoft.debugger.protocol.serverMessage;
+package consulo.dotnet.microsoft.debugger.protocol.clientMessage;
 
 /**
  * @author VISTALL
  * @since 18.04.2016
  */
-public class GetThreadsRequestResult
+public class GetTypeInfoRequest
 {
-	public static class ThreadInfo
-	{
-		public int Id;
-	}
+	public int ModuleToken;
 
-	public ThreadInfo[] Threads = new ThreadInfo[0];
+	public int ClassToken;
+
+	public GetTypeInfoRequest(int moduleToken, int classToken)
+	{
+		ModuleToken = moduleToken;
+		ClassToken = classToken;
+	}
 }
