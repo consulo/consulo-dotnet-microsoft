@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.mustbe.consulo.microsoft.dotnet.sdk;
+package consulo.microsoft.dotnet.sdk;
 
 import java.io.File;
 
@@ -23,8 +23,8 @@ import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import consulo.dotnet.sdk.DotNetSdkType;
-import org.mustbe.consulo.microsoft.dotnet.MicrosoftDotNetIcons;
-import org.mustbe.consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
+import consulo.microsoft.dotnet.MicrosoftDotNetIcons;
+import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
 import com.intellij.openapi.projectRoots.Sdk;
 
 /**

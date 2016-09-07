@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.mustbe.consulo.microsoft.dotnet.module.extension;
+package consulo.microsoft.dotnet.module.extension;
 
 import javax.swing.JComponent;
 

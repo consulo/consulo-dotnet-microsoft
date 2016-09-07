@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.mustbe.consulo.microsoft.dotnet.sdk;
+package consulo.microsoft.dotnet.sdk;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.mustbe.consulo.microsoft.dotnet.module.extension;
+package consulo.microsoft.dotnet.module.extension;
 
 import java.io.File;
 
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import consulo.dotnet.compiler.DotNetMacroUtil;
 import consulo.dotnet.execution.DebugConnectionInfo;
 import consulo.dotnet.module.extension.BaseDotNetModuleExtension;
-import org.mustbe.consulo.microsoft.dotnet.sdk.MicrosoftDotNetSdkType;
+import consulo.microsoft.dotnet.sdk.MicrosoftDotNetSdkType;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.execution.configurations.RunProfile;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.mustbe.consulo.microsoft.dotnet.util;
+package consulo.microsoft.dotnet.util;
 
 import org.jetbrains.annotations.Nullable;
 import com.sun.jna.platform.win32.Advapi32Util;
