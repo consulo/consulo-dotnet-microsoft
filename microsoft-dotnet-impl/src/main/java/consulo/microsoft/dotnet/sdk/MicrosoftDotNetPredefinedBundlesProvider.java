@@ -23,11 +23,12 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import com.intellij.openapi.projectRoots.impl.SdkImpl;
+
+import com.intellij.openapi.projectRoots.Sdk;
+import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.util.SystemInfo;
-import com.intellij.util.Consumer;
 import consulo.bundle.PredefinedBundlesProvider;
+import consulo.platform.Platform;
 
 /**
  * @author VISTALL
@@ -36,18 +37,19 @@ import consulo.bundle.PredefinedBundlesProvider;
 public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesProvider
 {
 	@Override
-	public void createBundles(@Nonnull Consumer<SdkImpl> consumer)
+	public void createBundles(@Nonnull Context context)
 	{
 		MicrosoftDotNetSdkType sdkType = MicrosoftDotNetSdkType.getInstance();
 
 		Collection<MicrosoftDotNetFramework> microsoftDotNetFrameworks = buildPaths(sdkType);
 		for(MicrosoftDotNetFramework netFramework : microsoftDotNetFrameworks)
 		{
-			SdkImpl sdk = createSdkWithName(sdkType, sdkType.getPresentableName() + " " + netFramework.toString());
-			sdk.setHomePath(netFramework.getPath());
-			sdk.setVersionString(netFramework.getVersion().getPresentableName());
+			Sdk sdk = context.createSdkWithName(sdkType, sdkType.getPresentableName() + " " + netFramework.toString());
 
-			consumer.consume(sdk);
+			SdkModificator modificator = sdk.getSdkModificator();
+			modificator.setHomePath(netFramework.getPath());
+			modificator.setVersionString(netFramework.getVersion().getPresentableName());
+			modificator.commitChanges();
 		}
 	}
 
@@ -58,7 +60,7 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 			List<MicrosoftDotNetFramework> list = new ArrayList<>();
 
 			// first of all, we try to collect sdk from Windows dir, where compilers are located at same dir
-			File framework = new File(System.getenv("windir"), "Microsoft.NET/Framework");
+			File framework = new File(Platform.current().getEnvironmentVariable("windir"), "Microsoft.NET/Framework");
 			File[] files = framework.listFiles();
 			if(files != null)
 			{
@@ -82,9 +84,9 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 
 	private void collectFromReferenceAssemblies(Collection<MicrosoftDotNetFramework> set,
 			@Nonnull MicrosoftDotNetSdkType sdkType,
-			@Nullable String env)
+			@Nonnull String env)
 	{
-		String envValue = System.getenv(env);
+		String envValue = Platform.current().getEnvironmentVariable(env);
 		if(envValue == null)
 		{
 			return;
