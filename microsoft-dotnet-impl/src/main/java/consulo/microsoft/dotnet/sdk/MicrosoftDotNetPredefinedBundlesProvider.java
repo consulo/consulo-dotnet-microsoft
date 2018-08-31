@@ -28,6 +28,7 @@ import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.util.SystemInfo;
 import consulo.bundle.PredefinedBundlesProvider;
+import consulo.dotnet.sdk.DotNetVersion;
 import consulo.platform.Platform;
 
 /**
@@ -66,10 +67,10 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 			{
 				for(File file : files)
 				{
-					MicrosoftDotNetVersion microsoftDotNetVersion = MicrosoftDotNetVersion.findVersion(file.getName(), true);
-					if(microsoftDotNetVersion != null && sdkType.isValidSdkHome(file.getPath()))
+					DotNetVersion version = DotNetVersion.findVersion(file.getName(), true);
+					if(version != null && sdkType.isValidSdkHome(file.getPath()))
 					{
-						list.add(new MicrosoftDotNetFramework(microsoftDotNetVersion, file.getPath(), true));
+						list.add(new MicrosoftDotNetFramework(version, file.getPath(), true));
 					}
 				}
 			}
@@ -101,10 +102,10 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 
 		for(File file : files)
 		{
-			MicrosoftDotNetVersion microsoftDotNetVersion = MicrosoftDotNetVersion.findVersion(file.getName(), false);
-			if(microsoftDotNetVersion != null && sdkType.isValidSdkHome(file.getPath()))
+			DotNetVersion version = DotNetVersion.findVersion(file.getName(), false);
+			if(version != null && sdkType.isValidSdkHome(file.getPath()))
 			{
-				set.add(new MicrosoftDotNetFramework(microsoftDotNetVersion, file.getPath(), false));
+				set.add(new MicrosoftDotNetFramework(version, file.getPath(), false));
 			}
 		}
 	}
