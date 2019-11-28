@@ -16,16 +16,6 @@
 
 package consulo.dotnet.microsoft.debugger;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Random;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.util.Processor;
@@ -39,7 +29,7 @@ import com.intellij.xdebugger.impl.XDebugSessionImpl;
 import com.intellij.xdebugger.impl.settings.XDebuggerSettingManagerImpl;
 import com.intellij.xdebugger.impl.ui.XDebugSessionTab;
 import com.intellij.xdebugger.impl.ui.XDebuggerUIConstants;
-import consulo.annotations.RequiredReadAction;
+import consulo.annotation.access.RequiredReadAction;
 import consulo.dotnet.debugger.DotNetDebugContext;
 import consulo.dotnet.debugger.DotNetDebugProcessBase;
 import consulo.dotnet.debugger.DotNetSuspendContext;
@@ -50,22 +40,20 @@ import consulo.dotnet.execution.DebugConnectionInfo;
 import consulo.dotnet.microsoft.debugger.breakpoint.MicrosoftBreakpointUtil;
 import consulo.dotnet.microsoft.debugger.proxy.MicrosoftThreadProxy;
 import consulo.dotnet.microsoft.debugger.proxy.MicrosoftVirtualMachineProxy;
-import mssdw.DebugInformationResult;
-import mssdw.EventKind;
-import mssdw.NotSuspendedException;
-import mssdw.SocketAttachingConnector;
-import mssdw.VMDisconnectedException;
-import mssdw.VirtualMachine;
+import mssdw.*;
 import mssdw.connect.Connector;
-import mssdw.event.BreakpointEvent;
-import mssdw.event.Event;
-import mssdw.event.EventQueue;
-import mssdw.event.EventSet;
-import mssdw.event.ModuleLoadEvent;
-import mssdw.event.StepEvent;
-import mssdw.event.VMDeathEvent;
+import mssdw.event.*;
 import mssdw.request.BreakpointRequest;
 import mssdw.request.EventRequestManager;
+
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.function.Consumer;
 
 /**
  * @author VISTALL

@@ -16,25 +16,16 @@
 
 package consulo.dotnet.microsoft.debugger.proxy;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.ArrayUtil;
-import consulo.annotations.RequiredReadAction;
-import consulo.dotnet.debugger.proxy.DotNetLocalVariableProxy;
-import consulo.dotnet.debugger.proxy.DotNetMethodParameterProxy;
-import consulo.dotnet.debugger.proxy.DotNetMethodProxy;
-import consulo.dotnet.debugger.proxy.DotNetStackFrameProxy;
-import consulo.dotnet.debugger.proxy.DotNetThrowValueException;
-import consulo.dotnet.debugger.proxy.DotNetTypeProxy;
+import consulo.annotation.access.RequiredReadAction;
+import consulo.dotnet.debugger.proxy.*;
 import consulo.dotnet.debugger.proxy.value.DotNetValueProxy;
-import mssdw.LocalVariableMirror;
-import mssdw.MethodMirror;
-import mssdw.MethodParameterMirror;
-import mssdw.StackFrameMirror;
-import mssdw.ThrowValueException;
-import mssdw.Value;
+import mssdw.*;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * @author VISTALL
