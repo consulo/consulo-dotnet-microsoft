@@ -36,18 +36,8 @@ import com.intellij.xdebugger.breakpoints.XBreakpoint;
 import consulo.dotnet.debugger.proxy.DotNetThreadProxy;
 import consulo.dotnet.debugger.proxy.DotNetTypeProxy;
 import consulo.dotnet.debugger.proxy.DotNetVirtualMachineProxy;
-import consulo.dotnet.debugger.proxy.value.DotNetBooleanValueProxy;
-import consulo.dotnet.debugger.proxy.value.DotNetCharValueProxy;
-import consulo.dotnet.debugger.proxy.value.DotNetNullValueProxy;
-import consulo.dotnet.debugger.proxy.value.DotNetNumberValueProxy;
-import consulo.dotnet.debugger.proxy.value.DotNetStringValueProxy;
-import mssdw.BooleanValueMirror;
-import mssdw.CharValueMirror;
-import mssdw.NoObjectValueMirror;
-import mssdw.NotSuspendedException;
-import mssdw.NumberValueMirror;
-import mssdw.ThreadMirror;
-import mssdw.VirtualMachine;
+import consulo.dotnet.debugger.proxy.value.*;
+import mssdw.*;
 import mssdw.request.EventRequest;
 import mssdw.request.EventRequestManager;
 import mssdw.request.StepRequest;
@@ -77,6 +67,14 @@ public class MicrosoftVirtualMachineProxy implements DotNetVirtualMachineProxy
 	public DotNetTypeProxy findType(@Nonnull Project project, @Nonnull String vmQName, @Nonnull VirtualFile virtualFile)
 	{
 		return MicrosoftTypeProxy.of(myVirtualMachine.findTypeByQualifiedName(vmQName));
+	}
+
+	@Nullable
+	@Override
+	public DotNetTypeProxy findTypeInCorlib(@Nonnull String vmQName)
+	{
+		TypeMirror typeMirror = myVirtualMachine.findTypeByQualifiedName(vmQName);
+		return MicrosoftTypeProxy.of(typeMirror);
 	}
 
 	@Override
