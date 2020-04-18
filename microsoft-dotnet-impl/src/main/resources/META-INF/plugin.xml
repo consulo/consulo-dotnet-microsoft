@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 
-<idea-plugin>
+<consulo-plugin>
 	<id>consulo.dotnet.microsoft</id>
 	<name>Microsoft .NET</name>
 	<version>SNAPSHOT</version>
@@ -31,4 +31,4 @@
 
 		<predefinedBundlesProvider implementation="consulo.microsoft.dotnet.sdk.MicrosoftDotNetPredefinedBundlesProvider" />
 	</extensions>
-</idea-plugin>
+</consulo-plugin>

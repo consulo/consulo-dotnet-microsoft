@@ -34,6 +34,7 @@ import com.intellij.xdebugger.XDebugSession;
 import consulo.dotnet.debugger.DotNetDebugProcessBase;
 import consulo.dotnet.debugger.DotNetModuleExtensionWithDebug;
 import consulo.dotnet.microsoft.debugger.MicrosoftDebugProcess;
+import consulo.platform.Platform;
 import consulo.roots.ModuleRootLayer;
 
 /**
@@ -76,7 +77,7 @@ public class MicrosoftDotNetModuleExtension extends BaseDotNetModuleExtension<Mi
 		GeneralCommandLine commandLine = new GeneralCommandLine();
 		if(debugConnectionInfo != null)
 		{
-			String mssdwPath = System.getProperty("mssdw.path");
+			String mssdwPath = Platform.current().os().getEnvironmentVariable("mssdw.path");
 			if(mssdwPath != null)
 			{
 				commandLine.withExePath(mssdwPath);

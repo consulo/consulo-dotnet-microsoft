@@ -61,7 +61,7 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 			List<MicrosoftDotNetFramework> list = new ArrayList<>();
 
 			// first of all, we try to collect sdk from Windows dir, where compilers are located at same dir
-			File framework = new File(Platform.current().getEnvironmentVariable("windir"), "Microsoft.NET/Framework");
+			File framework = new File(Platform.current().os().getEnvironmentVariable("windir"), "Microsoft.NET/Framework");
 			File[] files = framework.listFiles();
 			if(files != null)
 			{
@@ -87,7 +87,7 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 			@Nonnull MicrosoftDotNetSdkType sdkType,
 			@Nonnull String env)
 	{
-		String envValue = Platform.current().getEnvironmentVariable(env);
+		String envValue = Platform.current().os().getEnvironmentVariable(env);
 		if(envValue == null)
 		{
 			return;

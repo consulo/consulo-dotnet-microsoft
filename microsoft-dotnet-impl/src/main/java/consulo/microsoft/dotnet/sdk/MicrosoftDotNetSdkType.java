@@ -20,12 +20,11 @@ import java.io.File;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.Icon;
 
+import com.intellij.openapi.projectRoots.Sdk;
 import consulo.dotnet.sdk.DotNetSdkType;
 import consulo.microsoft.dotnet.MicrosoftDotNetIcons;
 import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
-import com.intellij.openapi.projectRoots.Sdk;
 import consulo.ui.image.Image;
 
 /**
@@ -37,7 +36,7 @@ public class MicrosoftDotNetSdkType extends DotNetSdkType
 	@Nonnull
 	public static MicrosoftDotNetSdkType getInstance()
 	{
-		return EP_NAME.findExtension(MicrosoftDotNetSdkType.class);
+		return EP_NAME.findExtensionOrFail(MicrosoftDotNetSdkType.class);
 	}
 
 	public MicrosoftDotNetSdkType()
