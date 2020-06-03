@@ -16,27 +16,48 @@
 
 package consulo.microsoft.dotnet.module.extension;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
+
 import com.intellij.openapi.projectRoots.Sdk;
+import consulo.disposer.Disposable;
 import consulo.dotnet.module.extension.DotNetConfigurationPanel;
 import consulo.dotnet.module.extension.DotNetMutableModuleExtension;
 import consulo.dotnet.module.extension.DotNetQualifiedElementQualifierProducer;
 import consulo.module.extension.MutableModuleInheritableNamedPointer;
+import consulo.module.extension.swing.SwingMutableModuleExtension;
 import consulo.roots.ModuleRootLayer;
+import consulo.ui.Component;
+import consulo.ui.Label;
 import consulo.ui.annotation.RequiredUIAccess;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.*;
+import consulo.ui.layout.VerticalLayout;
 
 /**
  * @author VISTALL
  * @since 20.11.13.
  */
-public class MicrosoftDotNetMutableModuleExtension extends MicrosoftDotNetModuleExtension implements DotNetMutableModuleExtension<MicrosoftDotNetModuleExtension>
+public class MicrosoftDotNetMutableModuleExtension extends MicrosoftDotNetModuleExtension implements DotNetMutableModuleExtension<MicrosoftDotNetModuleExtension>, SwingMutableModuleExtension
 {
 	public MicrosoftDotNetMutableModuleExtension(@Nonnull String id, @Nonnull ModuleRootLayer module)
 	{
 		super(id, module);
+	}
+
+	@RequiredUIAccess
+	@Nullable
+	@Override
+	public Component createConfigurationComponent(@Nonnull Disposable disposable, @Nonnull Runnable runnable)
+	{
+		return VerticalLayout.create().add(Label.create("Unsupported platform"));
+	}
+
+	@RequiredUIAccess
+	@Nullable
+	@Override
+	public JComponent createConfigurablePanel(@Nonnull Disposable disposable, @Nonnull Runnable runnable)
+	{
+		return new DotNetConfigurationPanel(this, DotNetQualifiedElementQualifierProducer.INSTANCE, myVariables, runnable);
 	}
 
 	@Override
@@ -50,14 +71,6 @@ public class MicrosoftDotNetMutableModuleExtension extends MicrosoftDotNetModule
 	public MutableModuleInheritableNamedPointer<Sdk> getInheritableSdk()
 	{
 		return (MutableModuleInheritableNamedPointer<Sdk>) super.getInheritableSdk();
-	}
-
-	@Nullable
-	@Override
-	@RequiredUIAccess
-	public JComponent createConfigurablePanel(@Nonnull Runnable runnable)
-	{
-		return new DotNetConfigurationPanel(this, DotNetQualifiedElementQualifierProducer.INSTANCE, myVariables, runnable);
 	}
 
 	@Override
