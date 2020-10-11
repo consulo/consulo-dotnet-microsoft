@@ -16,16 +16,15 @@
 
 package consulo.microsoft.dotnet.sdk;
 
-import java.io.File;
+import com.intellij.openapi.projectRoots.Sdk;
+import consulo.dotnet.microsoft.icon.MicrosoftDotNetIconGroup;
+import consulo.dotnet.sdk.DotNetSdkType;
+import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
+import consulo.ui.image.Image;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import com.intellij.openapi.projectRoots.Sdk;
-import consulo.dotnet.sdk.DotNetSdkType;
-import consulo.microsoft.dotnet.MicrosoftDotNetIcons;
-import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
-import consulo.ui.image.Image;
+import java.io.File;
 
 /**
  * @author VISTALL
@@ -92,6 +91,6 @@ public class MicrosoftDotNetSdkType extends DotNetSdkType
 	@Override
 	public Image getIcon()
 	{
-		return MicrosoftDotNetIcons.DotNet;
+		return MicrosoftDotNetIconGroup.dotnet();
 	}
 }

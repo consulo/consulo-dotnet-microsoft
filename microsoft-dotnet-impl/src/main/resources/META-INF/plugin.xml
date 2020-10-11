@@ -23,7 +23,7 @@
 	<extensions defaultExtensionNs="com.intellij">
 		<moduleExtensionProvider key="microsoft-dotnet"
 								 name=".NET"
-								 icon="/icons/dotnet.png"
+								 icon="consulo.dotnet.microsoft.MicrosoftDotNetIconGroup@dotnet"
 								 immutableClass="consulo.microsoft.dotnet.module.extension.MicrosoftDotNetModuleExtension"
 								 mutableClass="consulo.microsoft.dotnet.module.extension.MicrosoftDotNetMutableModuleExtension" />
 
