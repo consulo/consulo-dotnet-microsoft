@@ -16,8 +16,9 @@
 
 <consulo-plugin>
 	<id>consulo.dotnet.microsoft</id>
-	<name>Microsoft .NET</name>
+	<name>.NET Framework</name>
 	<version>SNAPSHOT</version>
+	<category>Software Framework</category>
 	<depends>consulo.dotnet</depends>
 
 	<extensions defaultExtensionNs="com.intellij">
