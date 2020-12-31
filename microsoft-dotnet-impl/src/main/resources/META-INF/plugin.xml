@@ -28,6 +28,8 @@
 								 immutableClass="consulo.microsoft.dotnet.module.extension.MicrosoftDotNetModuleExtension"
 								 mutableClass="consulo.microsoft.dotnet.module.extension.MicrosoftDotNetMutableModuleExtension" />
 
+		<configurationType implementation="consulo.dotnet.microsoft.run.MicrosoftRemoteDebugConfigurationType" />
+		
 		<sdkType implementation="consulo.microsoft.dotnet.sdk.MicrosoftDotNetSdkType" />
 
 		<predefinedBundlesProvider implementation="consulo.microsoft.dotnet.sdk.MicrosoftDotNetPredefinedBundlesProvider" />
