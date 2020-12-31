@@ -17,7 +17,7 @@
 package consulo.dotnet.microsoft.debugger;
 
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import consulo.logging.Logger;
 import com.intellij.util.Processor;
 import com.intellij.util.TimeoutUtil;
 import com.intellij.util.containers.MultiMap;

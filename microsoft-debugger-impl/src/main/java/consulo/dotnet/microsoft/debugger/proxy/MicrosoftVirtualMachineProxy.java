@@ -16,17 +16,6 @@
 
 package consulo.dotnet.microsoft.debugger.proxy;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ExecutorService;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.concurrency.AppExecutorUtil;
@@ -37,10 +26,20 @@ import consulo.dotnet.debugger.proxy.DotNetThreadProxy;
 import consulo.dotnet.debugger.proxy.DotNetTypeProxy;
 import consulo.dotnet.debugger.proxy.DotNetVirtualMachineProxy;
 import consulo.dotnet.debugger.proxy.value.*;
+import consulo.logging.Logger;
 import mssdw.*;
 import mssdw.request.EventRequest;
 import mssdw.request.EventRequestManager;
 import mssdw.request.StepRequest;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
 
 /**
  * @author VISTALL
@@ -55,7 +54,7 @@ public class MicrosoftVirtualMachineProxy implements DotNetVirtualMachineProxy
 	private final List<String> myLoadedModules = new CopyOnWriteArrayList<String>();
 	private final VirtualMachine myVirtualMachine;
 
-	private final ExecutorService myExecutor = AppExecutorUtil.createBoundedApplicationPoolExecutor("mono vm invoker", 1);
+	private final ExecutorService myExecutor = AppExecutorUtil.createBoundedApplicationPoolExecutor("MicrosoftNET Debugger", 1);
 
 	public MicrosoftVirtualMachineProxy(@Nonnull VirtualMachine virtualMachine)
 	{
