@@ -24,7 +24,7 @@ public class MicrosoftRemoteDebugConfigurationType extends ConfigurationTypeBase
 {
 	public MicrosoftRemoteDebugConfigurationType()
 	{
-		super("MicrosoftRemoteDebugConfigurationType", ".NET Remote", "", AllIcons.RunConfigurations.Remote);
+		super("MicrosoftRemoteDebugConfigurationType", ".NET Framework Remote", "", AllIcons.RunConfigurations.Remote);
 
 		addFactory(new ConfigurationFactoryEx(this)
 		{
