@@ -21,6 +21,11 @@
 	<category>Software Framework</category>
 	<depends>consulo.dotnet</depends>
 
+	<permissions>
+		<permission type="SOCKET"/>
+		<permission type="PROCESS"/>
+	</permissions>
+
 	<extensions defaultExtensionNs="com.intellij">
 		<moduleExtensionProvider key="microsoft-dotnet"
 								 name=".NET Framework"
@@ -29,7 +34,7 @@
 								 mutableClass="consulo.microsoft.dotnet.module.extension.MicrosoftDotNetMutableModuleExtension" />
 
 		<configurationType implementation="consulo.dotnet.microsoft.run.MicrosoftRemoteDebugConfigurationType" />
-		
+
 		<sdkType implementation="consulo.microsoft.dotnet.sdk.MicrosoftDotNetSdkType" />
 
 		<predefinedBundlesProvider implementation="consulo.microsoft.dotnet.sdk.MicrosoftDotNetPredefinedBundlesProvider" />
