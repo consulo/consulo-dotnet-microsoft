@@ -20,6 +20,9 @@
 	<version>SNAPSHOT</version>
 	<category>Software Framework</category>
 	<depends>consulo.dotnet</depends>
+	<tags>
+		<tag>software.framework</tag>
+	</tags>
 
 	<permissions>
 		<permission type="SOCKET"/>
