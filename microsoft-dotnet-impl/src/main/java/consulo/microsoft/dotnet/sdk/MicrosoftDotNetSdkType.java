@@ -87,7 +87,7 @@ public class MicrosoftDotNetSdkType extends DotNetSdkType
 		return super.getLoaderFile(sdk);
 	}
 
-	@Nullable
+	@Nonnull
 	@Override
 	public Image getIcon()
 	{

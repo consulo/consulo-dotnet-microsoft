@@ -16,20 +16,19 @@
 
 package consulo.microsoft.dotnet.sdk;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.util.SystemInfo;
 import consulo.bundle.PredefinedBundlesProvider;
 import consulo.dotnet.sdk.DotNetVersion;
 import consulo.platform.Platform;
+
+import javax.annotation.Nonnull;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author VISTALL
@@ -51,6 +50,8 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 			modificator.setHomePath(netFramework.getPath());
 			modificator.setVersionString(netFramework.getVersion().getPresentableName());
 			modificator.commitChanges();
+
+			sdkType.setupSdkPaths(sdk);
 		}
 	}
 
