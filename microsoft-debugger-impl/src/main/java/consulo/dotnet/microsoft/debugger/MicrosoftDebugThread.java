@@ -16,30 +16,25 @@
 
 package consulo.dotnet.microsoft.debugger;
 
-import com.intellij.openapi.application.ApplicationManager;
-import consulo.logging.Logger;
-import com.intellij.util.Processor;
-import com.intellij.util.TimeoutUtil;
-import com.intellij.util.containers.MultiMap;
-import com.intellij.util.ui.UIUtil;
-import com.intellij.xdebugger.XDebugSession;
-import com.intellij.xdebugger.breakpoints.XBreakpoint;
-import com.intellij.xdebugger.breakpoints.XLineBreakpoint;
-import com.intellij.xdebugger.impl.XDebugSessionImpl;
-import com.intellij.xdebugger.impl.settings.XDebuggerSettingManagerImpl;
-import com.intellij.xdebugger.impl.ui.XDebugSessionTab;
-import com.intellij.xdebugger.impl.ui.XDebuggerUIConstants;
 import consulo.annotation.access.RequiredReadAction;
+import consulo.application.ApplicationManager;
+import consulo.application.util.function.Processor;
 import consulo.dotnet.debugger.DotNetDebugContext;
-import consulo.dotnet.debugger.DotNetDebugProcessBase;
-import consulo.dotnet.debugger.DotNetSuspendContext;
-import consulo.dotnet.debugger.breakpoint.DotNetBreakpointEngine;
-import consulo.dotnet.debugger.breakpoint.DotNetBreakpointUtil;
+import consulo.dotnet.debugger.impl.DotNetDebugProcessBase;
+import consulo.dotnet.debugger.impl.DotNetSuspendContext;
+import consulo.dotnet.debugger.impl.breakpoint.DotNetBreakpointEngine;
+import consulo.dotnet.debugger.impl.breakpoint.DotNetBreakpointUtil;
 import consulo.dotnet.debugger.proxy.DotNetNotSuspendedException;
-import consulo.dotnet.execution.DebugConnectionInfo;
 import consulo.dotnet.microsoft.debugger.breakpoint.MicrosoftBreakpointUtil;
 import consulo.dotnet.microsoft.debugger.proxy.MicrosoftThreadProxy;
 import consulo.dotnet.microsoft.debugger.proxy.MicrosoftVirtualMachineProxy;
+import consulo.dotnet.util.DebugConnectionInfo;
+import consulo.execution.debug.XDebugSession;
+import consulo.execution.debug.breakpoint.XBreakpoint;
+import consulo.execution.debug.breakpoint.XLineBreakpoint;
+import consulo.logging.Logger;
+import consulo.util.collection.MultiMap;
+import consulo.util.lang.TimeoutUtil;
 import mssdw.*;
 import mssdw.connect.Connector;
 import mssdw.event.*;
@@ -208,7 +203,6 @@ public class MicrosoftDebugThread extends Thread
 			try
 			{
 				boolean stopped = false;
-				boolean focusUI = false;
 
 				while((eventSet = eventQueue.remove(1)) != null)
 				{
@@ -263,8 +257,7 @@ public class MicrosoftDebugThread extends Thread
 									event.request().delete();
 								}
 
-								mySession.positionReached(new DotNetSuspendContext(debugContext, eventSet.eventThread().id()));
-								focusUI = true;
+								mySession.positionReached(new DotNetSuspendContext(debugContext, eventSet.eventThread().id()), true);
 							}
 						}
 						else if(event instanceof StepEvent)
@@ -332,25 +325,6 @@ public class MicrosoftDebugThread extends Thread
 
 						myDebugProcess.setPausedEventSet(eventSet);
 
-						if(focusUI)
-						{
-							UIUtil.invokeLaterIfNeeded(new Runnable()
-							{
-								@Override
-								public void run()
-								{
-									XDebugSessionTab sessionTab = ((XDebugSessionImpl) mySession).getSessionTab();
-									if(sessionTab != null)
-									{
-										if(XDebuggerSettingManagerImpl.getInstanceImpl().getGeneralSettings().isShowDebuggerOnBreakpoint())
-										{
-											sessionTab.toFront(true, null);
-										}
-										sessionTab.getUi().attractBy(XDebuggerUIConstants.LAYOUT_VIEW_BREAKPOINT_CONDITION);
-									}
-								}
-							});
-						}
 						break;
 					}
 					else

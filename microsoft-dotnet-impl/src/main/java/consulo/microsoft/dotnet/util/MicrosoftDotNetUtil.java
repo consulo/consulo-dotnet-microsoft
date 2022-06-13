@@ -16,10 +16,11 @@
 
 package consulo.microsoft.dotnet.util;
 
-import javax.annotation.Nullable;
-
 import com.sun.jna.platform.win32.Advapi32Util;
 import com.sun.jna.platform.win32.WinReg;
+import consulo.util.jna.JnaLoader;
+
+import javax.annotation.Nullable;
 
 /**
  * @author VISTALL
@@ -30,6 +31,11 @@ public class MicrosoftDotNetUtil
 	@Nullable
 	public static String getInstallPath()
 	{
+		if(!JnaLoader.isLoaded())
+		{
+			return null;
+		}
+
 		try
 		{
 			return Advapi32Util.registryGetStringValue(WinReg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full", "InstallPath");
@@ -43,6 +49,11 @@ public class MicrosoftDotNetUtil
 	@Nullable
 	public static String getTargetVersion()
 	{
+		if(!JnaLoader.isLoaded())
+		{
+			return null;
+		}
+
 		try
 		{
 			return Advapi32Util.registryGetStringValue(WinReg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full", "TargetVersion");

@@ -1,10 +1,10 @@
 package consulo.dotnet.microsoft.debugger.proxy;
 
-import javax.annotation.Nonnull;
-
+import consulo.component.util.pointer.Named;
 import consulo.dotnet.debugger.proxy.DotNetVariableProxy;
-import consulo.util.pointers.Named;
 import mssdw.MirrorWithIdAndName;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author VISTALL

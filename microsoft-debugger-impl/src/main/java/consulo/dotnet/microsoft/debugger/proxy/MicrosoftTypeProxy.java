@@ -16,20 +16,19 @@
 
 package consulo.dotnet.microsoft.debugger.proxy;
 
-import javax.annotation.Nonnull;
-
-import org.jetbrains.annotations.Contract;
-
-import javax.annotation.Nullable;
-import com.intellij.util.ArrayUtil;
 import consulo.dotnet.debugger.proxy.DotNetFieldProxy;
 import consulo.dotnet.debugger.proxy.DotNetMethodProxy;
 import consulo.dotnet.debugger.proxy.DotNetPropertyProxy;
 import consulo.dotnet.debugger.proxy.DotNetTypeProxy;
+import consulo.util.collection.ArrayUtil;
 import mssdw.FieldMirror;
 import mssdw.MethodMirror;
 import mssdw.PropertyMirror;
 import mssdw.TypeMirror;
+import org.jetbrains.annotations.Contract;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * @author VISTALL

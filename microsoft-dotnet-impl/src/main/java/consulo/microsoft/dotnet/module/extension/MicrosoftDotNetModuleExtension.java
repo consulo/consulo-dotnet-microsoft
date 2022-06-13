@@ -16,26 +16,26 @@
 
 package consulo.microsoft.dotnet.module.extension;
 
-import java.io.File;
+import consulo.container.plugin.PluginManager;
+import consulo.content.bundle.Sdk;
+import consulo.content.bundle.SdkType;
+import consulo.dotnet.compiler.DotNetMacroUtil;
+import consulo.dotnet.debugger.impl.DotNetDebugProcessBase;
+import consulo.dotnet.debugger.impl.DotNetModuleExtensionWithDebug;
+import consulo.dotnet.microsoft.debugger.MicrosoftDebugProcess;
+import consulo.dotnet.module.extension.BaseDotNetModuleExtension;
+import consulo.dotnet.util.DebugConnectionInfo;
+import consulo.execution.configuration.RunProfile;
+import consulo.execution.debug.XDebugSession;
+import consulo.microsoft.dotnet.sdk.MicrosoftDotNetSdkType;
+import consulo.module.content.layer.ModuleRootLayer;
+import consulo.platform.Platform;
+import consulo.process.ExecutionException;
+import consulo.process.cmd.GeneralCommandLine;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import consulo.dotnet.compiler.DotNetMacroUtil;
-import consulo.dotnet.execution.DebugConnectionInfo;
-import consulo.dotnet.module.extension.BaseDotNetModuleExtension;
-import consulo.microsoft.dotnet.sdk.MicrosoftDotNetSdkType;
-import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.GeneralCommandLine;
-import com.intellij.execution.configurations.RunProfile;
-import com.intellij.ide.plugins.PluginManager;
-import com.intellij.openapi.projectRoots.Sdk;
-import com.intellij.openapi.projectRoots.SdkType;
-import com.intellij.xdebugger.XDebugSession;
-import consulo.dotnet.debugger.DotNetDebugProcessBase;
-import consulo.dotnet.debugger.DotNetModuleExtensionWithDebug;
-import consulo.dotnet.microsoft.debugger.MicrosoftDebugProcess;
-import consulo.platform.Platform;
-import consulo.roots.ModuleRootLayer;
+import java.io.File;
 
 /**
  * @author VISTALL

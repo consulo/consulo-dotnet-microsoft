@@ -16,7 +16,7 @@
 
 package consulo.microsoft.dotnet.sdk;
 
-import com.intellij.openapi.projectRoots.Sdk;
+import consulo.content.bundle.Sdk;
 import consulo.dotnet.microsoft.icon.MicrosoftDotNetIconGroup;
 import consulo.dotnet.sdk.DotNetSdkType;
 import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;

@@ -31,7 +31,7 @@
 		<permission type="SOCKET_CONNECT"/>
 	</permissions>
 
-	<extensions defaultExtensionNs="com.intellij">
+	<extensions defaultExtensionNs="consulo">
 		<moduleExtensionProvider key="microsoft-dotnet"
 								 name=".NET Framework"
 								 icon="consulo.dotnet.microsoft.MicrosoftDotNetIconGroup@dotnet"
