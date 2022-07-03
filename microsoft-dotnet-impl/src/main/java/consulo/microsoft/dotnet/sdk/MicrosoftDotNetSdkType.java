@@ -16,6 +16,7 @@
 
 package consulo.microsoft.dotnet.sdk;
 
+import consulo.annotation.component.ExtensionImpl;
 import consulo.content.bundle.Sdk;
 import consulo.dotnet.microsoft.icon.MicrosoftDotNetIconGroup;
 import consulo.dotnet.sdk.DotNetSdkType;
@@ -30,6 +31,7 @@ import java.io.File;
  * @author VISTALL
  * @since 23.11.13.
  */
+@ExtensionImpl
 public class MicrosoftDotNetSdkType extends DotNetSdkType
 {
 	@Nonnull

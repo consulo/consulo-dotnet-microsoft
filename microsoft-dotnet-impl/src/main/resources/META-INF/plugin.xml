@@ -30,18 +30,4 @@
 		<permission type="SOCKET_BIND"/>
 		<permission type="SOCKET_CONNECT"/>
 	</permissions>
-
-	<extensions defaultExtensionNs="consulo">
-		<moduleExtensionProvider key="microsoft-dotnet"
-								 name=".NET Framework"
-								 icon="consulo.dotnet.microsoft.MicrosoftDotNetIconGroup@dotnet"
-								 immutableClass="consulo.microsoft.dotnet.module.extension.MicrosoftDotNetModuleExtension"
-								 mutableClass="consulo.microsoft.dotnet.module.extension.MicrosoftDotNetMutableModuleExtension" />
-
-		<configurationType implementation="consulo.dotnet.microsoft.run.MicrosoftRemoteDebugConfigurationType" />
-
-		<sdkType implementation="consulo.microsoft.dotnet.sdk.MicrosoftDotNetSdkType" />
-
-		<predefinedBundlesProvider implementation="consulo.microsoft.dotnet.sdk.MicrosoftDotNetPredefinedBundlesProvider" />
-	</extensions>
 </consulo-plugin>

@@ -16,6 +16,7 @@
 
 package consulo.microsoft.dotnet.sdk;
 
+import consulo.annotation.component.ExtensionImpl;
 import consulo.content.bundle.PredefinedBundlesProvider;
 import consulo.content.bundle.Sdk;
 import consulo.content.bundle.SdkModificator;
@@ -33,6 +34,7 @@ import java.util.List;
  * @author VISTALL
  * @since 09.03.2015
  */
+@ExtensionImpl
 public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesProvider
 {
 	@Override

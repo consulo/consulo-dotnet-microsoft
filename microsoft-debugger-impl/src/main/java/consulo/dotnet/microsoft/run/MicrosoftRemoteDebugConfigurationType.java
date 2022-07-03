@@ -1,5 +1,6 @@
 package consulo.dotnet.microsoft.run;
 
+import consulo.annotation.component.ExtensionImpl;
 import consulo.application.AllIcons;
 import consulo.dotnet.debugger.impl.DotNetDebugProcessBase;
 import consulo.dotnet.debugger.impl.runner.remote.DotNetRemoteConfiguration;
@@ -20,6 +21,7 @@ import javax.annotation.Nonnull;
  * @author VISTALL
  * @since 31/12/2020
  */
+@ExtensionImpl
 public class MicrosoftRemoteDebugConfigurationType extends ConfigurationTypeBase
 {
 	public MicrosoftRemoteDebugConfigurationType()
