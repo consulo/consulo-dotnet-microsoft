@@ -16,10 +16,10 @@
 
 package consulo.microsoft.dotnet.sdk;
 
-import com.intellij.openapi.projectRoots.Sdk;
-import com.intellij.openapi.projectRoots.SdkModificator;
-import com.intellij.openapi.util.SystemInfo;
-import consulo.bundle.PredefinedBundlesProvider;
+import consulo.annotation.component.ExtensionImpl;
+import consulo.content.bundle.PredefinedBundlesProvider;
+import consulo.content.bundle.Sdk;
+import consulo.content.bundle.SdkModificator;
 import consulo.dotnet.sdk.DotNetVersion;
 import consulo.platform.Platform;
 
@@ -34,6 +34,7 @@ import java.util.List;
  * @author VISTALL
  * @since 09.03.2015
  */
+@ExtensionImpl
 public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesProvider
 {
 	@Override
@@ -57,7 +58,7 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 
 	public Collection<MicrosoftDotNetFramework> buildPaths(MicrosoftDotNetSdkType sdkType)
 	{
-		if(SystemInfo.isWindows)
+		if(Platform.current().os().isWindows())
 		{
 			List<MicrosoftDotNetFramework> list = new ArrayList<>();
 

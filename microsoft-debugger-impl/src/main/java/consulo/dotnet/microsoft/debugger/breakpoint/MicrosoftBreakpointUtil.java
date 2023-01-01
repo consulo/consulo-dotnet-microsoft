@@ -1,25 +1,25 @@
 package consulo.dotnet.microsoft.debugger.breakpoint;
 
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.module.ModuleUtilCore;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Computable;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileManager;
-import com.intellij.xdebugger.XDebugSession;
-import com.intellij.xdebugger.breakpoints.XBreakpoint;
-import com.intellij.xdebugger.breakpoints.XLineBreakpoint;
 import consulo.annotation.access.RequiredReadAction;
+import consulo.application.ApplicationManager;
 import consulo.dotnet.compiler.DotNetMacroUtil;
-import consulo.dotnet.debugger.breakpoint.DotNetBreakpointUtil;
-import consulo.dotnet.debugger.breakpoint.properties.DotNetExceptionBreakpointProperties;
+import consulo.dotnet.debugger.impl.breakpoint.DotNetBreakpointUtil;
+import consulo.dotnet.debugger.impl.breakpoint.properties.DotNetExceptionBreakpointProperties;
 import consulo.dotnet.microsoft.debugger.proxy.MicrosoftVirtualMachineProxy;
 import consulo.dotnet.module.extension.DotNetModuleExtension;
+import consulo.execution.debug.XDebugSession;
+import consulo.execution.debug.breakpoint.XBreakpoint;
+import consulo.execution.debug.breakpoint.XLineBreakpoint;
+import consulo.language.util.ModuleUtilCore;
+import consulo.project.Project;
+import consulo.virtualFileSystem.VirtualFile;
+import consulo.virtualFileSystem.VirtualFileManager;
 import mssdw.DebugInformationResult;
 import mssdw.VirtualMachine;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
 /**
  * @author VISTALL
@@ -47,14 +47,7 @@ public class MicrosoftBreakpointUtil
 
 	public static void createBreakpointRequest(@Nonnull final XDebugSession debugSession, @Nonnull MicrosoftVirtualMachineProxy virtualMachine, @Nonnull final XLineBreakpoint breakpoint)
 	{
-		String modulePath = ApplicationManager.getApplication().runReadAction(new Computable<String>()
-		{
-			@Override
-			public String compute()
-			{
-				return getModulePath(debugSession.getProject(), breakpoint);
-			}
-		});
+		String modulePath = ApplicationManager.getApplication().runReadAction((Supplier<String>) () -> getModulePath(debugSession.getProject(), breakpoint));
 
 		// if we can't resolve module path or module is not loaded - breakpoint is not valid
 		if(modulePath == null || !virtualMachine.getLoadedModules().contains(modulePath))

@@ -16,12 +16,12 @@
 
 package consulo.dotnet.microsoft.debugger.proxy;
 
-import com.intellij.openapi.project.Project;
-import com.intellij.psi.PsiElement;
-import com.intellij.util.ArrayUtil;
 import consulo.annotation.access.RequiredReadAction;
 import consulo.dotnet.debugger.proxy.*;
 import consulo.dotnet.debugger.proxy.value.DotNetValueProxy;
+import consulo.language.psi.PsiElement;
+import consulo.project.Project;
+import consulo.util.collection.ArrayUtil;
 import mssdw.*;
 
 import javax.annotation.Nonnull;

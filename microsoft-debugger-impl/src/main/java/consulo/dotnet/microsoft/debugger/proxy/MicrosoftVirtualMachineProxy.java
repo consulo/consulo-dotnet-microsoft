@@ -16,17 +16,17 @@
 
 package consulo.dotnet.microsoft.debugger.proxy;
 
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.util.concurrency.AppExecutorUtil;
-import com.intellij.util.containers.ContainerUtil;
-import com.intellij.util.containers.MultiMap;
-import com.intellij.xdebugger.breakpoints.XBreakpoint;
+import consulo.application.util.concurrent.AppExecutorUtil;
 import consulo.dotnet.debugger.proxy.DotNetThreadProxy;
 import consulo.dotnet.debugger.proxy.DotNetTypeProxy;
 import consulo.dotnet.debugger.proxy.DotNetVirtualMachineProxy;
 import consulo.dotnet.debugger.proxy.value.*;
+import consulo.execution.debug.breakpoint.XBreakpoint;
 import consulo.logging.Logger;
+import consulo.project.Project;
+import consulo.util.collection.ContainerUtil;
+import consulo.util.collection.MultiMap;
+import consulo.virtualFileSystem.VirtualFile;
 import mssdw.*;
 import mssdw.request.EventRequest;
 import mssdw.request.EventRequestManager;
@@ -34,10 +34,7 @@ import mssdw.request.StepRequest;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 
@@ -47,9 +44,9 @@ import java.util.concurrent.ExecutorService;
  */
 public class MicrosoftVirtualMachineProxy implements DotNetVirtualMachineProxy
 {
-	private static final Logger LOGGER = Logger.getInstance(MicrosoftVirtualMachineProxy.class);
+	private static final Logger LOG = Logger.getInstance(MicrosoftVirtualMachineProxy.class);
 
-	private final Set<StepRequest> myStepRequests = ContainerUtil.newLinkedHashSet();
+	private final Set<StepRequest> myStepRequests = new LinkedHashSet<>();
 	private final MultiMap<XBreakpoint, EventRequest> myBreakpointEventRequests = MultiMap.create();
 	private final List<String> myLoadedModules = new CopyOnWriteArrayList<String>();
 	private final VirtualMachine myVirtualMachine;
@@ -87,7 +84,7 @@ public class MicrosoftVirtualMachineProxy implements DotNetVirtualMachineProxy
 			}
 			catch(Throwable e)
 			{
-				LOGGER.error(e);
+				LOG.error(e);
 			}
 		});
 	}
