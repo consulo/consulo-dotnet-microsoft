@@ -1,10 +1,10 @@
 package consulo.dotnet.microsoft.run;
 
 import consulo.annotation.component.ExtensionImpl;
-import consulo.application.AllIcons;
 import consulo.dotnet.debugger.impl.DotNetDebugProcessBase;
 import consulo.dotnet.debugger.impl.runner.remote.DotNetRemoteConfiguration;
 import consulo.dotnet.microsoft.debugger.MicrosoftDebugProcess;
+import consulo.dotnet.microsoft.debugger.localize.MicrosoftDebuggerLocalize;
 import consulo.dotnet.module.extension.DotNetModuleExtension;
 import consulo.dotnet.util.DebugConnectionInfo;
 import consulo.execution.configuration.ConfigurationFactory;
@@ -12,6 +12,7 @@ import consulo.execution.configuration.ConfigurationTypeBase;
 import consulo.execution.configuration.RunConfiguration;
 import consulo.execution.debug.XDebugSession;
 import consulo.module.extension.ModuleExtensionHelper;
+import consulo.platform.base.icon.PlatformIconGroup;
 import consulo.process.ExecutionException;
 import consulo.project.Project;
 
@@ -26,7 +27,7 @@ public class MicrosoftRemoteDebugConfigurationType extends ConfigurationTypeBase
 {
 	public MicrosoftRemoteDebugConfigurationType()
 	{
-		super("MicrosoftRemoteDebugConfigurationType", ".NET Framework Remote", "", AllIcons.RunConfigurations.Remote);
+		super("MicrosoftRemoteDebugConfigurationType", MicrosoftDebuggerLocalize.microsoftDebuggerRemoteConfigurationName(), PlatformIconGroup.runconfigurationsRemote());
 
 		addFactory(new ConfigurationFactory(this)
 		{
