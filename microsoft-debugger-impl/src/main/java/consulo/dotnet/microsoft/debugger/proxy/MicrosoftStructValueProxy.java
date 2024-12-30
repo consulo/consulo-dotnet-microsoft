@@ -3,7 +3,7 @@ package consulo.dotnet.microsoft.debugger.proxy;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 import consulo.dotnet.debugger.proxy.DotNetFieldOrPropertyProxy;
 import consulo.dotnet.debugger.proxy.value.DotNetStructValueProxy;

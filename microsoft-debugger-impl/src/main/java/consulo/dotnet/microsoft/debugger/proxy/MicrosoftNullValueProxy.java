@@ -16,8 +16,8 @@
 
 package consulo.dotnet.microsoft.debugger.proxy;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import consulo.dotnet.debugger.proxy.DotNetTypeProxy;
 import consulo.dotnet.debugger.proxy.value.DotNetNullValueProxy;
 import consulo.dotnet.debugger.proxy.value.DotNetValueProxyVisitor;

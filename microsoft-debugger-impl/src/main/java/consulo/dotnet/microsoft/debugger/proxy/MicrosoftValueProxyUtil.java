@@ -17,7 +17,7 @@
 package consulo.dotnet.microsoft.debugger.proxy;
 
 import org.jetbrains.annotations.Contract;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import consulo.dotnet.debugger.proxy.value.DotNetValueProxy;
 import mssdw.*;
 

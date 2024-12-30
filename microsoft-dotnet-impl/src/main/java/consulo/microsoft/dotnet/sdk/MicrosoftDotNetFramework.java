@@ -16,7 +16,7 @@
 
 package consulo.microsoft.dotnet.sdk;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 import consulo.dotnet.sdk.DotNetVersion;
 

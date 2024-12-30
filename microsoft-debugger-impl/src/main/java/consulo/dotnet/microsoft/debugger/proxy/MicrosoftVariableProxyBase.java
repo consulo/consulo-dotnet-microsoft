@@ -4,7 +4,7 @@ import consulo.component.util.pointer.Named;
 import consulo.dotnet.debugger.proxy.DotNetVariableProxy;
 import mssdw.MirrorWithIdAndName;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * @author VISTALL

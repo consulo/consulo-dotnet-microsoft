@@ -41,7 +41,7 @@ import mssdw.event.*;
 import mssdw.request.BreakpointRequest;
 import mssdw.request.EventRequestManager;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
