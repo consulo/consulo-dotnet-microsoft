@@ -17,14 +17,16 @@
 package consulo.microsoft.dotnet.sdk;
 
 import consulo.annotation.component.ExtensionImpl;
+import consulo.application.Application;
 import consulo.content.bundle.Sdk;
+import consulo.content.bundle.SdkType;
 import consulo.dotnet.microsoft.icon.MicrosoftDotNetIconGroup;
 import consulo.dotnet.sdk.DotNetSdkType;
 import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
 import consulo.ui.image.Image;
-
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
+
 import java.io.File;
 
 /**
@@ -32,67 +34,56 @@ import java.io.File;
  * @since 23.11.13.
  */
 @ExtensionImpl
-public class MicrosoftDotNetSdkType extends DotNetSdkType
-{
-	@Nonnull
-	public static MicrosoftDotNetSdkType getInstance()
-	{
-		return EP_NAME.findExtensionOrFail(MicrosoftDotNetSdkType.class);
-	}
+public class MicrosoftDotNetSdkType extends DotNetSdkType {
+    @Nonnull
+    public static MicrosoftDotNetSdkType getInstance() {
+        return Application.get().getExtensionPoint(SdkType.class).findExtensionOrFail(MicrosoftDotNetSdkType.class);
+    }
 
-	public MicrosoftDotNetSdkType()
-	{
-		super("MICROSOFT_DOTNET_SDK");
-	}
+    public MicrosoftDotNetSdkType() {
+        super("MICROSOFT_DOTNET_SDK");
+    }
 
-	@Override
-	public boolean supportsUserAdd()
-	{
-		return false;
-	}
+    @Override
+    public boolean supportsUserAdd() {
+        return false;
+    }
 
-	@Override
-	public boolean isValidSdkHome(String s)
-	{
-		return new File(s, "mscorlib.dll").exists();
-	}
+    @Override
+    public boolean isValidSdkHome(String s) {
+        return new File(s, "mscorlib.dll").exists();
+    }
 
-	@Nullable
-	@Override
-	public String getVersionString(String sdkHome)
-	{
-		throw new UnsupportedOperationException();
-	}
+    @Nullable
+    @Override
+    public String getVersionString(String sdkHome) {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
-	public String suggestSdkName(String currentSdkName, String sdkHome)
-	{
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public String suggestSdkName(String currentSdkName, String sdkHome) {
+        throw new UnsupportedOperationException();
+    }
 
-	@Nonnull
-	@Override
-	public String getPresentableName()
-	{
-		return ".NET Framework";
-	}
+    @Nonnull
+    @Override
+    public String getPresentableName() {
+        return ".NET Framework";
+    }
 
-	@Nonnull
-	@Override
-	public File getLoaderFile(@Nonnull Sdk sdk)
-	{
-		String targetVersion = MicrosoftDotNetUtil.getTargetVersion();
-		if("4.0.0".equals(targetVersion))
-		{
-			return getLoaderFile(MicrosoftDotNetSdkType.class, "loader4.exe");
-		}
-		return super.getLoaderFile(sdk);
-	}
+    @Nonnull
+    @Override
+    public File getLoaderFile(@Nonnull Sdk sdk) {
+        String targetVersion = MicrosoftDotNetUtil.getTargetVersion();
+        if ("4.0.0".equals(targetVersion)) {
+            return getLoaderFile(MicrosoftDotNetSdkType.class, "loader4.exe");
+        }
+        return super.getLoaderFile(sdk);
+    }
 
-	@Nonnull
-	@Override
-	public Image getIcon()
-	{
-		return MicrosoftDotNetIconGroup.dotnet();
-	}
+    @Nonnull
+    @Override
+    public Image getIcon() {
+        return MicrosoftDotNetIconGroup.dotnet();
+    }
 }
