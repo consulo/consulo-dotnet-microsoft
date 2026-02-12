@@ -22,8 +22,8 @@ import consulo.content.bundle.Sdk;
 import consulo.content.bundle.SdkModificator;
 import consulo.dotnet.sdk.DotNetVersion;
 import consulo.platform.Platform;
-
 import jakarta.annotation.Nonnull;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,80 +35,67 @@ import java.util.List;
  * @since 09.03.2015
  */
 @ExtensionImpl
-public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesProvider
-{
-	@Override
-	public void createBundles(@Nonnull Context context)
-	{
-		MicrosoftDotNetSdkType sdkType = MicrosoftDotNetSdkType.getInstance();
+public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesProvider {
+    @Override
+    public void createBundles(@Nonnull Context context) {
+        MicrosoftDotNetSdkType sdkType = MicrosoftDotNetSdkType.getInstance();
 
-		Collection<MicrosoftDotNetFramework> microsoftDotNetFrameworks = buildPaths(sdkType);
-		for(MicrosoftDotNetFramework netFramework : microsoftDotNetFrameworks)
-		{
-			Sdk sdk = context.createSdkWithName(sdkType, sdkType.getPresentableName() + " " + netFramework.toString());
+        Collection<MicrosoftDotNetFramework> microsoftDotNetFrameworks = buildPaths(sdkType);
+        for (MicrosoftDotNetFramework netFramework : microsoftDotNetFrameworks) {
+            Sdk sdk = context.createSdkWithName(sdkType, sdkType.getDisplayName().get() + " " + netFramework.toString());
 
-			SdkModificator modificator = sdk.getSdkModificator();
-			modificator.setHomePath(netFramework.getPath());
-			modificator.setVersionString(netFramework.getVersion().getPresentableName());
-			modificator.commitChanges();
+            SdkModificator modificator = sdk.getSdkModificator();
+            modificator.setHomePath(netFramework.getPath());
+            modificator.setVersionString(netFramework.getVersion().getPresentableName());
+            modificator.commitChanges();
 
-			sdkType.setupSdkPaths(sdk);
-		}
-	}
+            sdkType.setupSdkPaths(sdk);
+        }
+    }
 
-	public Collection<MicrosoftDotNetFramework> buildPaths(MicrosoftDotNetSdkType sdkType)
-	{
-		if(Platform.current().os().isWindows())
-		{
-			List<MicrosoftDotNetFramework> list = new ArrayList<>();
+    public Collection<MicrosoftDotNetFramework> buildPaths(MicrosoftDotNetSdkType sdkType) {
+        if (Platform.current().os().isWindows()) {
+            List<MicrosoftDotNetFramework> list = new ArrayList<>();
 
-			// first of all, we try to collect sdk from Windows dir, where compilers are located at same dir
-			File framework = new File(Platform.current().os().getEnvironmentVariable("windir"), "Microsoft.NET/Framework");
-			File[] files = framework.listFiles();
-			if(files != null)
-			{
-				for(File file : files)
-				{
-					DotNetVersion version = DotNetVersion.findVersion(file.getName(), true);
-					if(version != null && sdkType.isValidSdkHome(file.getPath()))
-					{
-						list.add(new MicrosoftDotNetFramework(version, file.getPath(), true));
-					}
-				}
-			}
+            // first of all, we try to collect sdk from Windows dir, where compilers are located at same dir
+            File framework = new File(Platform.current().os().getEnvironmentVariable("windir"), "Microsoft.NET/Framework");
+            File[] files = framework.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    DotNetVersion version = DotNetVersion.findVersion(file.getName(), true);
+                    if (version != null && sdkType.isValidSdkHome(file.getPath())) {
+                        list.add(new MicrosoftDotNetFramework(version, file.getPath(), true));
+                    }
+                }
+            }
 
-			collectFromReferenceAssemblies(list, sdkType, "ProgramFiles");
-			collectFromReferenceAssemblies(list, sdkType, "ProgramFiles(x86)");
-			return list;
-		}
-		return Collections.emptyList();
-	}
+            collectFromReferenceAssemblies(list, sdkType, "ProgramFiles");
+            collectFromReferenceAssemblies(list, sdkType, "ProgramFiles(x86)");
+            return list;
+        }
+        return Collections.emptyList();
+    }
 
 
-	private void collectFromReferenceAssemblies(Collection<MicrosoftDotNetFramework> set,
-			@Nonnull MicrosoftDotNetSdkType sdkType,
-			@Nonnull String env)
-	{
-		String envValue = Platform.current().os().getEnvironmentVariable(env);
-		if(envValue == null)
-		{
-			return;
-		}
+    private void collectFromReferenceAssemblies(Collection<MicrosoftDotNetFramework> set,
+                                                @Nonnull MicrosoftDotNetSdkType sdkType,
+                                                @Nonnull String env) {
+        String envValue = Platform.current().os().getEnvironmentVariable(env);
+        if (envValue == null) {
+            return;
+        }
 
-		File path = new File(envValue, "Reference Assemblies\\Microsoft\\Framework\\.NETFramework");
-		File[] files = path.listFiles();
-		if(files == null)
-		{
-			return;
-		}
+        File path = new File(envValue, "Reference Assemblies\\Microsoft\\Framework\\.NETFramework");
+        File[] files = path.listFiles();
+        if (files == null) {
+            return;
+        }
 
-		for(File file : files)
-		{
-			DotNetVersion version = DotNetVersion.findVersion(file.getName(), false);
-			if(version != null && sdkType.isValidSdkHome(file.getPath()))
-			{
-				set.add(new MicrosoftDotNetFramework(version, file.getPath(), false));
-			}
-		}
-	}
+        for (File file : files) {
+            DotNetVersion version = DotNetVersion.findVersion(file.getName(), false);
+            if (version != null && sdkType.isValidSdkHome(file.getPath())) {
+                set.add(new MicrosoftDotNetFramework(version, file.getPath(), false));
+            }
+        }
+    }
 }

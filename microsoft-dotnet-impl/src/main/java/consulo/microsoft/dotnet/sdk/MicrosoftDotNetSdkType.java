@@ -22,8 +22,8 @@ import consulo.content.bundle.Sdk;
 import consulo.content.bundle.SdkType;
 import consulo.dotnet.microsoft.icon.MicrosoftDotNetIconGroup;
 import consulo.dotnet.sdk.DotNetSdkType;
+import consulo.localize.LocalizeValue;
 import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
-import consulo.ui.image.Image;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
@@ -41,7 +41,7 @@ public class MicrosoftDotNetSdkType extends DotNetSdkType {
     }
 
     public MicrosoftDotNetSdkType() {
-        super("MICROSOFT_DOTNET_SDK");
+        super("MICROSOFT_DOTNET_SDK", LocalizeValue.localizeTODO(".NET Framework"), MicrosoftDotNetIconGroup.dotnet());
     }
 
     @Override
@@ -67,23 +67,11 @@ public class MicrosoftDotNetSdkType extends DotNetSdkType {
 
     @Nonnull
     @Override
-    public String getPresentableName() {
-        return ".NET Framework";
-    }
-
-    @Nonnull
-    @Override
     public File getLoaderFile(@Nonnull Sdk sdk) {
         String targetVersion = MicrosoftDotNetUtil.getTargetVersion();
         if ("4.0.0".equals(targetVersion)) {
             return getLoaderFile(MicrosoftDotNetSdkType.class, "loader4.exe");
         }
         return super.getLoaderFile(sdk);
-    }
-
-    @Nonnull
-    @Override
-    public Image getIcon() {
-        return MicrosoftDotNetIconGroup.dotnet();
     }
 }
