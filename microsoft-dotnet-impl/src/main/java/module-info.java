@@ -7,7 +7,10 @@ module consulo.dotnet.microsoft
 	// TODO remove this in future
 	requires java.desktop;
 
-	requires consulo.ide.api;
+	requires consulo.language.api;
+	requires consulo.process.api;
+	requires consulo.execution.api;
+	requires consulo.execution.debug.api;
 	requires consulo.dotnet.api;
 	requires consulo.dotnet.psi.impl;
 

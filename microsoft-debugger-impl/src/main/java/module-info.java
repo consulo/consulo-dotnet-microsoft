@@ -4,7 +4,7 @@
  */
 module consulo.dotnet.microsoft.debugger.impl
 {
-	requires consulo.ide.api;
+	requires consulo.execution.debug.api;
 	requires consulo.dotnet.api;
 
 	requires mssdw.java.client;
