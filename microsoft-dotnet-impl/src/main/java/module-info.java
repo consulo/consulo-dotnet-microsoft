@@ -4,9 +4,6 @@
  */
 module consulo.dotnet.microsoft
 {
-	// TODO remove this in future
-	requires java.desktop;
-
 	requires consulo.language.api;
 	requires consulo.process.api;
 	requires consulo.execution.api;
