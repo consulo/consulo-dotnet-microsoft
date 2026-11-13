@@ -24,10 +24,13 @@ import consulo.dotnet.microsoft.icon.MicrosoftDotNetIconGroup;
 import consulo.dotnet.sdk.DotNetSdkType;
 import consulo.localize.LocalizeValue;
 import consulo.microsoft.dotnet.util.MicrosoftDotNetUtil;
+import consulo.platform.Platform;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.function.Consumer;
 
 /**
  * @author VISTALL
@@ -50,24 +53,29 @@ public class MicrosoftDotNetSdkType extends DotNetSdkType {
     }
 
     @Override
-    public boolean isValidSdkHome(String s) {
-        return new File(s, "mscorlib.dll").exists();
+    public void collectHomePaths(@Nonnull Platform platform, @Nonnull Consumer<Path> pathConsumer) {
+        // the bundles are predefined - see MicrosoftDotNetPredefinedBundlesProvider
+    }
+
+    @Override
+    public boolean isValidSdkHome(@Nonnull Platform platform, @Nonnull Path path) {
+        return Files.exists(path.resolve("mscorlib.dll"));
     }
 
     @Nullable
     @Override
-    public String getVersionString(String sdkHome) {
+    public String getVersionString(@Nonnull Platform platform, @Nonnull Path sdkHome) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public String suggestSdkName(String currentSdkName, String sdkHome) {
+    public String suggestSdkName(@Nonnull Platform platform, @Nullable String currentSdkName, @Nonnull Path sdkHome) {
         throw new UnsupportedOperationException();
     }
 
     @Nonnull
     @Override
-    public File getLoaderFile(@Nonnull Sdk sdk) {
+    public Path getLoaderFile(@Nonnull Sdk sdk) {
         String targetVersion = MicrosoftDotNetUtil.getTargetVersion();
         if ("4.0.0".equals(targetVersion)) {
             return getLoaderFile(MicrosoftDotNetSdkType.class, "loader4.exe");

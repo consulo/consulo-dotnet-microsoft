@@ -63,7 +63,7 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
             if (files != null) {
                 for (File file : files) {
                     DotNetVersion version = DotNetVersion.findVersion(file.getName(), true);
-                    if (version != null && sdkType.isValidSdkHome(file.getPath())) {
+                    if (version != null && sdkType.isValidSdkHome(Platform.current(), file.toPath())) {
                         list.add(new MicrosoftDotNetFramework(version, file.getPath(), true));
                     }
                 }
@@ -93,7 +93,7 @@ public class MicrosoftDotNetPredefinedBundlesProvider extends PredefinedBundlesP
 
         for (File file : files) {
             DotNetVersion version = DotNetVersion.findVersion(file.getName(), false);
-            if (version != null && sdkType.isValidSdkHome(file.getPath())) {
+            if (version != null && sdkType.isValidSdkHome(Platform.current(), file.toPath())) {
                 set.add(new MicrosoftDotNetFramework(version, file.getPath(), false));
             }
         }
