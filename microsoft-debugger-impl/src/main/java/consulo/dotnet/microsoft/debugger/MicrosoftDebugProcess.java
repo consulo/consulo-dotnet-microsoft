@@ -30,6 +30,7 @@ import consulo.execution.debug.breakpoint.XBreakpointType;
 import consulo.execution.debug.breakpoint.XLineBreakpoint;
 import consulo.execution.debug.event.XBreakpointListener;
 import consulo.execution.debug.frame.XSuspendContext;
+import consulo.execution.debug.step.HasRunToPosition;
 import consulo.execution.debug.localize.XDebuggerLocalize;
 import consulo.localize.LocalizeValue;
 import jakarta.annotation.Nonnull;
@@ -45,7 +46,7 @@ import mssdw.request.StepRequest;
  * @author VISTALL
  * @since 5/8/2016
  */
-public class MicrosoftDebugProcess extends DotNetDebugProcessBase {
+public class MicrosoftDebugProcess extends DotNetDebugProcessBase implements HasRunToPosition {
     private class MyXBreakpointListener implements XBreakpointListener<XBreakpoint<?>> {
         @Override
         public void breakpointAdded(@Nonnull final XBreakpoint<?> breakpoint) {
